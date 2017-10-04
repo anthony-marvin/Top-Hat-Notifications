@@ -47,4 +47,12 @@
     </div>
     <?php
   }
+  
+  function top_hat_shortcodes() {
+    function top_hat_shortcode() {
+
+    }
+    add_shortcode( 'top_hat_bar', 'top_hat_shortcode' );
+  }
+  add_action( 'init', 'top_hat_shortcodes' );
 ?>
