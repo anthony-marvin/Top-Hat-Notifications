@@ -18,7 +18,33 @@
 * You should have received a copy of the GNU General Public License
 * along with Top Hat Notifications. If not, see {License URI}.
 */
+  add_action( 'admin_init', 'thn_register_settings' );
+  add_action( 'admin_menu', 'thn_settings_add_page' );
 
+  function thn_register_settings() {
+  }
+  function thn_settings_add_page() {
+    add_menu_page(
+      'Top Hat Notification Settings', // Name of Menu item
+      'Top Hat Notification Settings', // Title
+      'manage_options', //displays menu if user can do this.
+      'thn_settings', //
+      'top_hat_settings_page',
+      '', // TODO add logo/icon for settings
+      6 //Currently right after posts
+    );
+  }
 
-
+  function top_hat_settings_page() {
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+    ?>
+    <div class="wrap">
+      <h2>Top Hat Notification Settings</h2>
+      <div>Here you can configure the options for the Top Hat Notification System</div>
+      <div class="thn-foot">Plugin built with love by <a href="http://glacial.com/" target="http://glacial.com/" rel="noopener">Glacial Multimedia</a></div>
+    </div>
+    <?php
+  }
 ?>
