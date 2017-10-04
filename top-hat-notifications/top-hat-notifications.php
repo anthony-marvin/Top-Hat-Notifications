@@ -27,7 +27,7 @@
     add_menu_page(
       'Top Hat Notification Settings', // Name of Menu item
       'Top Hat Notification Settings', // Title
-      'manage_options', //displays menu if user can do this.
+      'administrator', //displays menu if user can do this.
       'thn_settings', //
       'top_hat_settings_page',
       '', // TODO add logo/icon for settings
@@ -36,9 +36,6 @@
   }
 
   function top_hat_settings_page() {
-    if (!current_user_can('manage_options')) {
-        return;
-    }
     ?>
     <div class="wrap">
       <h2>Top Hat Notification Settings</h2>
@@ -47,7 +44,7 @@
     </div>
     <?php
   }
-  
+
   function top_hat_shortcodes() {
     function top_hat_shortcode() {
 
