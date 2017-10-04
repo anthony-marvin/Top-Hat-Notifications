@@ -17,6 +17,7 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with Top Hat Notifications. If not, see {License URI}.
+*
 */
   add_action( 'admin_init', 'thn_settings' );
   add_action( 'admin_menu', 'thn_settings_add_page' );
@@ -58,7 +59,7 @@
         <input type="text" placeholder="Top bar text" name="thn_text" value="<?php echo esc_attr( get_option( 'thn_text' ) ); ?>">
         <?php submit_button(); ?>
       </form>
-      <div class="thn-foot">Plugin built with love by <a href="http://glacial.com/" target="http://glacial.com/" rel="noopener">Glacial Multimedia</a></div>
+      <div class="thn-foot">Plugin built with love by <a href="http://glacial.com/" target="_blank" rel="noopener">Glacial Multimedia</a></div>
     </div>
     <?php
   }
