@@ -1,7 +1,7 @@
 <?php
 /**
 * Plugin Name: Top Hat Notifications
-* Version: 0.01
+* Version: 0.02
 * Author: Glacial Multimedia
 * License: GPL2
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
