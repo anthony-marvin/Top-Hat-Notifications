@@ -18,10 +18,21 @@
 * You should have received a copy of the GNU General Public License
 * along with Top Hat Notifications. If not, see {License URI}.
 */
-  add_action( 'admin_init', 'thn_register_settings' );
+  add_action( 'admin_init', 'thn_settings' );
   add_action( 'admin_menu', 'thn_settings_add_page' );
+  add_action( 'wp_enqueue_scripts', 'top_hat_enqueue_scripts' );
+  function top_hat_enqueue_scripts() {
+    wp_enqueue_script('top-hat', plugins_url( 'js/top-hat.js', __FILE__ ), array('jquery'));
 
-  function thn_register_settings() {
+    $thn_text = get_option('thn_text');
+    $top_hat_settings = array(
+      'thn_text' => $thn_text
+      );
+
+    wp_localize_script('top-hat', 'top_hat_settings', $top_hat_settings );
+  }
+  function thn_settings() {
+    register_setting( 'thn-settings', 'thn_text' );
   }
   function thn_settings_add_page() {
     add_menu_page(
@@ -40,16 +51,23 @@
     <div class="wrap">
       <h2>Top Hat Notification Settings</h2>
       <div>Here you can configure the options for the Top Hat Notification System</div>
+      <form method="post" action="options.php">
+        <?php settings_fields( 'thn-settings' ); ?>
+        <?php do_settings_sections( 'thn-settings' ); ?>
+        <h5>Top Bar Text</h5>
+        <input type="text" placeholder="Top bar text" name="thn_text" value="<?php echo esc_attr( get_option( 'thn_text' ) ); ?>">
+        <?php submit_button(); ?>
+      </form>
       <div class="thn-foot">Plugin built with love by <a href="http://glacial.com/" target="http://glacial.com/" rel="noopener">Glacial Multimedia</a></div>
     </div>
     <?php
   }
 
-  function top_hat_shortcodes() {
-    function top_hat_shortcode() {
-
-    }
-    add_shortcode( 'top_hat_bar', 'top_hat_shortcode' );
-  }
-  add_action( 'init', 'top_hat_shortcodes' );
+  // function top_hat_shortcodes() { //This all might not be necessary
+  //   function top_hat_shortcode() {
+  //
+  //   }
+  //   add_shortcode( 'top_hat_bar', 'top_hat_shortcode' );
+  // }
+  // add_action( 'init', 'top_hat_shortcodes' );
 ?>
